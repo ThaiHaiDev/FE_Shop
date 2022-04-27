@@ -14,7 +14,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Fade from '@mui/material/Fade';
 
-import Product from '../Product';
+import Product from '../../features/Product';
 import Register from '../../features/Auth/component/Register';
 import Login from '../../features/Auth/component/Login';
 import { useDispatch, useSelector } from 'react-redux';
