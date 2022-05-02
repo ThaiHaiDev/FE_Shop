@@ -1,16 +1,18 @@
 import { Box, Button, TextField, Typography } from "@mui/material";
 import { useState } from "react";
 
-export default function FilterByPrice({ onChange }) {
+export default function FilterByPrice({ filters = {}, onChange }) {
     const [filterPrice, setFilterPrice] = useState({
         
     })
    
     const handlePriceClick = () => {
-        if (onChange)
+        if (onChange) {
             onChange(filterPrice)
+            filterPrice.salePrice_gte = ''
+            filterPrice.salePrice_lte = ''
+        }
         
-        console.log(filterPrice)
     }
 
     const handlePriceGteChange = (e) => {

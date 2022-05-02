@@ -8,6 +8,7 @@ import ProductSkeleton from "./component/ProductSkeleton";
 import ProductSort from "./component/ProductSort";
 
 export default function Product() {
+    const [categoryList, setCategoryList] = useState('')
     const [danhSach, setDanhSach] = useState([])
     const [loading, setLoading] = useState(true)
     const [pagination, setPagination] = useState({
@@ -51,11 +52,12 @@ export default function Product() {
         }))
     }
 
-    const handleFilterChange = (newFilters) => {
+    const handleFilterChange = (newFilters, listcate) => {
         setFilters(prev => ({
             ...prev,
             ...newFilters
         }))
+        setCategoryList(listcate)
     }
 
     
@@ -80,7 +82,7 @@ export default function Product() {
 
                             {/* Truyền currentSort xuống con và nhận giá trị từ con lên ở onChange */}
                             <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
-                            <FilterView filters={filters} onChange={handleViewFilter} />
+                            <FilterView filters={filters} onChange={handleViewFilter} categoryList={categoryList} />
 
                             {loading ? <ProductSkeleton /> : <ProductList data={danhSach} />}
 

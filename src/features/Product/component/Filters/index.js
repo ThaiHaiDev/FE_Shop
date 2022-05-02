@@ -5,14 +5,14 @@ import FilterByService from "./FilterByService";
 
 export default function Filters({ filters, onChange }) {
 
-    const handleCategoryChange = (newCategoryId) => {
+    const handleCategoryChange = (newCategoryId, listcate) => {
         if (!onChange) return;
 
         const newFilter = {
             ...filters,
-            category: newCategoryId
+            category: newCategoryId,
         }
-        onChange(newFilter)
+        onChange(newFilter, listcate)
     }
 
     const handlePriceChange = (filterNew) => {
@@ -28,7 +28,7 @@ export default function Filters({ filters, onChange }) {
     return (
         <div>
             <FilterByCategory onChange={handleCategoryChange} />
-            <FilterByPrice onChange={handlePriceChange} />
+            <FilterByPrice filters={filters} onChange={handlePriceChange} />
             <FilterByService filters={filters} onChange={handlePriceChange} />
         </div>
     )
