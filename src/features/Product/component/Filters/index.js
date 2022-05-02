@@ -1,5 +1,7 @@
 
 import FilterByCategory from "./FilterByCategory";
+import FilterByPrice from "./FilterByPrice";
+import FilterByService from "./FilterByService";
 
 export default function Filters({ filters, onChange }) {
 
@@ -13,9 +15,21 @@ export default function Filters({ filters, onChange }) {
         onChange(newFilter)
     }
 
+    const handlePriceChange = (filterNew) => {
+        if (!onChange) return;
+
+        const newFilter = {
+            ...filters,
+            ...filterNew
+        }
+        onChange(newFilter)
+    }
+
     return (
-        <div>Filters
+        <div>
             <FilterByCategory onChange={handleCategoryChange} />
+            <FilterByPrice onChange={handlePriceChange} />
+            <FilterByService filters={filters} onChange={handlePriceChange} />
         </div>
     )
 }

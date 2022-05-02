@@ -44,7 +44,7 @@ export default function FilterByCategory({ onChange }) {
 
     return (
         <div>
-            <Typography variant='subtitle2' sx={{fontWeight: 'bold', paddingLeft: '10px'}}>DANH MỤC SẢN PHẨM</Typography>
+            <Typography variant='subtitle2' sx={{fontWeight: 'bold', paddingLeft: '10px', paddingTop: '10px'}}>DANH MỤC SẢN PHẨM</Typography>
             <Ul>
                 {listCate.map(list => (
                     <Li key={list.id} onClick={() => handleCategoryClick(list)}> {list.name} </Li>

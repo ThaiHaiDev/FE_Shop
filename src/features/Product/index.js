@@ -2,6 +2,7 @@ import { Box, Container, Grid, Pagination, Paper } from "@mui/material";
 import { useEffect, useState } from "react";
 import productApi from "../../api/productApi";
 import Filters from "./component/Filters";
+import FilterView from "./component/FilterViews";
 import ProductList from "./component/ProductList";
 import ProductSkeleton from "./component/ProductSkeleton";
 import ProductSort from "./component/ProductSort";
@@ -57,6 +58,11 @@ export default function Product() {
         }))
     }
 
+    
+    const handleViewFilter = (newFilters) => {
+        setFilters(newFilters)
+    }
+
     return (
         <Box pt={2}>
             <Container maxWidth="sl">
@@ -74,6 +80,7 @@ export default function Product() {
 
                             {/* Truyền currentSort xuống con và nhận giá trị từ con lên ở onChange */}
                             <ProductSort currentSort={filters._sort} onChange={handleSortChange} />
+                            <FilterView filters={filters} onChange={handleViewFilter} />
 
                             {loading ? <ProductSkeleton /> : <ProductList data={danhSach} />}
 
