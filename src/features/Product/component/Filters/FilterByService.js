@@ -7,7 +7,6 @@ export default function FilterByService({ filters = {}, onChange }) {
 
         const { name , checked } = e.target
         onChange({[name]: checked})
-        console.log(filters.isFreeShip)
     }
 
     return (

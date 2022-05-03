@@ -1,7 +1,5 @@
 import { Box, Chip } from "@mui/material";
 
-var cateName = null
-
 const FILTER_LIST = [
     {
         id: 1,
@@ -52,13 +50,9 @@ const FILTER_LIST = [
     {
         id: 4,
         getLabel: (filters, categoryList) => {
-            if (categoryList) {
-                cateName = categoryList[filters.category - 1].name
-            }
-            else {
-                return cateName
-            }
-            return categoryList ? `${categoryList[filters.category - 1].name}` : `${cateName}`
+            const newFilters = { ...filters };
+            if (!categoryList ) return ''
+            return newFilters['category'] ?  `${categoryList.name }` : ''
         } ,
         isActive: (filters) => filters.category ,  // Trả về true nếu có filters.isFreeShip
         isVisible: (filters, categoryList) => filters.category ,

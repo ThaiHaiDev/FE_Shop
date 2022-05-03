@@ -39,7 +39,7 @@ export default function FilterByCategory({ onChange }) {
 
     const handleCategoryClick = (category) => {
         if (onChange)
-            onChange(category.id, listCate)
+            onChange(category.id)
     }
 
     return (

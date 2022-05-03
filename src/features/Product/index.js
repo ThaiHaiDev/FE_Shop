@@ -1,11 +1,14 @@
 import { Box, Container, Grid, Pagination, Paper } from "@mui/material";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import productApi from "../../api/productApi";
 import Filters from "./component/Filters";
 import FilterView from "./component/FilterViews";
 import ProductList from "./component/ProductList";
 import ProductSkeleton from "./component/ProductSkeleton";
 import ProductSort from "./component/ProductSort";
+import queryString from 'query-string'
+import categoryApi from "../../api/categoryApi";
 
 export default function Product() {
     const [categoryList, setCategoryList] = useState('')
@@ -17,11 +20,28 @@ export default function Product() {
         page: 1
     })
 
+    // URL defauld
+    const location = useLocation()
+    const queryParams = useMemo(() => {
+        return queryString.parse(location.search)
+    }, [location.search])
+    
     const [filters, setFilters] = useState({
-        _page: 1,
-        _limit: 12,
-        _sort: 'salePrice:asc',
+        ...queryParams,
+        _page: Number.parseInt(queryParams._page) || 1,
+        _limit: Number.parseInt(queryParams._limit) || 12,
+        _sort: queryParams._sort || 'salePrice:asc',
     })
+
+    // Push URL
+    const navigate = useNavigate()
+    useEffect(() => {
+        navigate({
+            search: queryString.stringify(filters)
+        })
+        
+    }, [filters, navigate])
+
 
     const handlePageChange = (e, page) => {
         setFilters(prev => ({
@@ -45,6 +65,26 @@ export default function Product() {
         })()
     }, [filters])
 
+    // Lấy tên category theo id của URL queryParams
+    useEffect(() => {
+        (async () => {
+            try {
+                if (!queryParams['category']) {
+                    return;
+                } else {
+                    const list = await categoryApi.getById(
+                        Number.parseInt(queryParams['category'])
+                    );
+
+                    setCategoryList(list);
+                }
+            } catch (error) {
+                console.log('Failed to fetch category list!', error);
+            }
+        })();
+    }, [queryParams]);
+
+
     const handleSortChange = (newSortValue) => {
         setFilters(prev => ({
             ...prev,
@@ -57,7 +97,6 @@ export default function Product() {
             ...prev,
             ...newFilters
         }))
-        setCategoryList(listcate)
     }
 
     
