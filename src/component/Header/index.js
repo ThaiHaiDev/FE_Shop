@@ -21,8 +21,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../features/Auth/userSlice';
 import ProductDetail from '../../features/ProductDetail';
 
-import PageDescription from '../../PageDescription'
-
 export default function Header() {
   const [open, setOpen] = React.useState(false);
   const [mode, setMode] = React.useState('login')

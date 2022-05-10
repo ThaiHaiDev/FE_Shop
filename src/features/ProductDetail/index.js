@@ -6,15 +6,7 @@ import ProductInfo from "./ProductInfo";
 import ProductMenu from "./ProductMenu";
 import ProductThumbnail from "./ProductThumbnail";
 
-import { NavLink, Routes, Route, useLocation } from 'react-router-dom'
-import styled from 'styled-components';
-import PageAdditional from "./PageProduct/PageAdditional";
-import PageDescription from "./PageProduct/PageDescription";
-import PageReviews from "./PageProduct/PageReviews";
-
 export default function ProductDetail() {
-    const location = useLocation()
-    console.log(location)
     const param= useParams()
     const detail = useProductDetail(param.productId)
     const product = detail.productDetailById
