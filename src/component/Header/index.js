@@ -19,6 +19,9 @@ import Register from '../../features/Auth/component/Register';
 import Login from '../../features/Auth/component/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../features/Auth/userSlice';
+import ProductDetail from '../../features/ProductDetail';
+
+import PageDescription from '../../PageDescription'
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
@@ -113,6 +116,7 @@ export default function Header() {
       {/* Router  */}
       <Routes>
         <Route path="/product" element={<Product />} />
+        <Route path="/product/:productId/*" element={<ProductDetail />} />
       </Routes>
 
       {/* Dialog Register */}

@@ -1,10 +1,18 @@
 import { Box, Typography } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 export default function ProductItem({ props }) {
+    const navigate = useNavigate()
+    const handleClick = () => {
+        navigate(`/product/${props.id}`)
+    }
+
+    const thumbnailUrl = props.thumbnail ? `https://api.ezfrontend.com${props.thumbnail?.url}` : "https://via.placeholder.com/444"
     return (
-        <Box padding={1}>
+        
+        <Box padding={1} onClick={handleClick} sx={{cursor: 'pointer'}}>
             <Box padding={1} minHeight="129px">
-                <img src={props.name ? "https://i2.wp.com/planx.co.il/wp-content/uploads/2011/05/400x400.png?fit=400%2C400&ssl=1" : "https://cdn.tgdd.vn/hoi-dap/580732/loi-404-not-found-la-gi-9-cach-khac-phuc-loi-404-not-1-800x450.jpg" } alt={props.name} width="100%" />
+                <img src={thumbnailUrl} alt={props.name} width="100%" />
             </Box>
             <Typography variant="body2">{props.name}</Typography>
             <Typography variant="body2">

@@ -22,7 +22,11 @@ const productApi = {
                 total: count
             }
         }
-    }
+    },
+    getById(id) {
+        const url = `products/${id}`;
+        return axiosClient.get(url);
+    },
 }
 
 export default productApi
