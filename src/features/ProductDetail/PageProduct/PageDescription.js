@@ -1,9 +1,8 @@
-import { Box } from "@mui/material";
+import DOMPurify from 'dompurify'
 
-export default function PageDescription() {
+export default function PageDescription({ product }) {
+    const safeDescription = DOMPurify.sanitize(product.description)
     return (
-        <Box sx={{textAlign: 'center'}}>
-            <div>Description</div>
-        </Box>
+        <div style={{padding: '15px 20px'}} dangerouslySetInnerHTML={{__html: safeDescription}} />
     )
 }

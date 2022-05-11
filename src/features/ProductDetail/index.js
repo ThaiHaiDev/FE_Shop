@@ -1,20 +1,29 @@
 import { Box, Container, Grid, Paper } from "@mui/material";
+import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import useProductDetail from "../Hooks/useProductDetail";
 import AddToCartForm from "./AddToCartForm";
 import ProductInfo from "./ProductInfo";
 import ProductMenu from "./ProductMenu";
 import ProductThumbnail from "./ProductThumbnail";
+import cartSlice from '../Cart/cartSlice'
 
 export default function ProductDetail() {
     const param= useParams()
     const detail = useProductDetail(param.productId)
     const product = detail.productDetailById
+    const dispatch = useDispatch()
 
     if (detail.loading) return (<div>Loading</div>)
 
     const handleSubmit = (values) => {
-        console.log('Form add cart: ',values )
+        const action = cartSlice.actions.addToCart({
+            id: product.id,
+            product,
+            quantity: values
+        })
+        dispatch(action)
+        // console.log(cartSlice.)
     }
     
     return (

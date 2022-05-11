@@ -25,23 +25,23 @@ export default function ProductMenu({ product }) {
     // Ở component con này không có / 
     return (
         <div>
-        <Box component="ul" sx={{display:'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', margin: 0, padding: 0}}>
-            <Li>
-                <Link component={NavLink} to='' sx={{textDecoration: 'none'}}>Description</Link>
-            </Li>
+            <Box component="ul" sx={{display:'flex', flexFlow: 'row nowrap', justifyContent: 'center', alignItems: 'center', margin: 0, padding: 0}}>
+                <Li>
+                    <Link component={NavLink} to='' sx={{textDecoration: 'none'}}>Description</Link>
+                </Li>
 
-            <Li>
-                <Link component={NavLink} to='additional' sx={{textDecoration: 'none'}}>Additional Information</Link>
-            </Li>
+                <Li>
+                    <Link component={NavLink} to='additional' sx={{textDecoration: 'none'}}>Additional Information</Link>
+                </Li>
 
-            <Li>
-                <Link component={NavLink} to='reviews' sx={{textDecoration: 'none'}}>Reviews</Link>
-            </Li>
-        </Box>
-        <Routes>
-                <Route path='' element={<PageDescription />} /> 
-                <Route path={`additional`} element={<PageAdditional />} />
-                <Route path={`reviews`} element={<PageReviews />} />
+                <Li>
+                    <Link component={NavLink} to='reviews' sx={{textDecoration: 'none'}}>Reviews</Link>
+                </Li>
+            </Box>
+            <Routes>
+                    <Route path='' element={<PageDescription product={product} />} /> 
+                    <Route path={`additional`} element={<PageAdditional />} />
+                    <Route path={`reviews`} element={<PageReviews />} />
             </Routes>
         </div>
         

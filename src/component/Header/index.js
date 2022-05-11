@@ -20,6 +20,8 @@ import Login from '../../features/Auth/component/Login';
 import { useDispatch, useSelector } from 'react-redux';
 import userSlice from '../../features/Auth/userSlice';
 import ProductDetail from '../../features/ProductDetail';
+import Page from '../PageHome';
+import Cart from '../../features/Cart';
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
@@ -94,6 +96,7 @@ export default function Header() {
         </Toolbar>
       </AppBar>
 
+      
       {/* Menu Account  */}
       <Menu
         id="fade-menu"
@@ -113,8 +116,10 @@ export default function Header() {
 
       {/* Router  */}
       <Routes>
+        <Route path="/" element={<Page />} />
         <Route path="/product" element={<Product />} />
         <Route path="/product/:productId/*" element={<ProductDetail />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
 
       {/* Dialog Register */}
