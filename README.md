@@ -4,15 +4,15 @@
 
 * Use new version of: 
 
-    + React(v18)
+    + React V5 (18.0.0)
     
-    + Mui V5
+    + Mui V5 (5.6.2)
     
-    + react-hook-form V7
+    + react-hook-form V7 (7.30.0)
     
-    + react-router-dom V6
+    + react-router-dom V6 (6.3.0)
     
-    + resolver v2.
+    + resolver v2 (2.8.8)
 
 * Use more: Redux toolkit, Redux Thunk, yup, axios, @mui/system, notistack, styled-component, dompurify
 
