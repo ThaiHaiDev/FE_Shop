@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Paper } from "@mui/material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import useProductDetail from "../Hooks/useProductDetail";
 import AddToCartForm from "./AddToCartForm";
@@ -7,12 +7,15 @@ import ProductInfo from "./ProductInfo";
 import ProductMenu from "./ProductMenu";
 import ProductThumbnail from "./ProductThumbnail";
 import cartSlice from '../Cart/cartSlice'
+import React from "react";
 
 export default function ProductDetail() {
     const param= useParams()
     const detail = useProductDetail(param.productId)
     const product = detail.productDetailById
     const dispatch = useDispatch()
+    const a = useSelector((state) => state.cart.cartItems)
+    console.log('a', a)
 
     if (detail.loading) return (<div>Loading</div>)
 
@@ -20,10 +23,9 @@ export default function ProductDetail() {
         const action = cartSlice.actions.addToCart({
             id: product.id,
             product,
-            quantity: values
+            quantity: Number.parseFloat(Object.values(values))
         })
         dispatch(action)
-        // console.log(cartSlice.)
     }
     
     return (

@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import MenuIcon from '@mui/icons-material/Menu';
-import { Link, NavLink, Route, Routes } from 'react-router-dom'
+import { Link, NavLink, Route, Routes, useNavigate } from 'react-router-dom'
 import CloseIcon from '@mui/icons-material/Close';
 import Dialog from '@mui/material/Dialog';
 import FaceIcon from '@mui/icons-material/Face';
@@ -22,14 +22,23 @@ import userSlice from '../../features/Auth/userSlice';
 import ProductDetail from '../../features/ProductDetail';
 import Page from '../PageHome';
 import Cart from '../../features/Cart';
+import { ShoppingCart } from '@mui/icons-material';
+import { Badge } from '@mui/material';
+import { cartItemsCountSelector } from '../../redux/selectors'
 
 export default function Header() {
   const [open, setOpen] = React.useState(false);
   const [mode, setMode] = React.useState('login')
 
+  // Cart item
+  const countItem = useSelector(cartItemsCountSelector)
+  const navige = useNavigate()
+
   // Get data from store redux
   const isUser = useSelector(state => state.user.current)
   const isUserLogin = isUser.id
+
+
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -57,6 +66,10 @@ export default function Header() {
     handleMenuClose()
   }
 
+  const handleCart = () => {
+    navige('/cart')
+  }
+
   return (
     <Box sx={{ flexGrow: 1 }}>
 
@@ -79,6 +92,15 @@ export default function Header() {
           <NavLink to="/product" style={{ textDecoration: 'none', color: 'white' }}>
             <Button color="inherit">Product</Button>
           </NavLink>
+
+          {/* Cart icon */}
+          <IconButton aria-label='Show 4 new mails' color="inherit" onClick={handleCart}>
+            <Badge badgeContent={countItem} color="secondary">
+              <ShoppingCart />
+            </Badge>
+            
+          </IconButton>
+
           {!isUserLogin && (
               <Button color="inherit" sx={{color: 'white', textDecoration: 'none'}} onClick={handleClickOpen}>Login</Button>
           )}

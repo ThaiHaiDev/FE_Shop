@@ -10,23 +10,21 @@ const cartSlice = createSlice({
     },
 
     reducers: {
-        addToCart(state, action) {
-            const newItem = action.payload
-            const index = state.cartItems.findIndex(x => x.id === newItem.id)
-            if (index === 0) {
-                state.cartItems[index].quantity += newItem.quantity
-            }
-            else {
-                state.cartItems.push(newItem)
-            }
-            console.log('newItem: ', newItem)
-            console.log('cartItems: ', state.cartItems)
-        },
         showMiniCart: (state) => {
             state.showMiniCart = true
         },
         hideMiniCart: (state) => {
             state.showMiniCart = false
+        },
+        addToCart(state, action) {
+            const newItem = action.payload
+            const index = state.cartItems.findIndex(x => x.id === newItem.id)
+            if (index >= 0) {
+                state.cartItems[index].quantity =  newItem.quantity 
+            }
+            else {
+                state.cartItems.push(newItem)
+            }
         },
         setQuantity: (state, action) => {
             const { id, quantity } = action.payload

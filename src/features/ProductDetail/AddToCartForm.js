@@ -11,7 +11,7 @@ export default function AddToCartForm({ onSubmit }) {
 
     const form = useForm({
         defaultValues: {
-            quantity: '',
+            quantity: 1,
         },
         resolver: yupResolver(schema)
     })
@@ -20,6 +20,7 @@ export default function AddToCartForm({ onSubmit }) {
     const handleSubmit = async (values) => {
         if (onSubmit) {
             await onSubmit(values)
+            console.log(values)
         }
         form.reset()
     }
